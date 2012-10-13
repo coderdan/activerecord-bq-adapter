@@ -4,8 +4,8 @@ require File.expand_path('../lib/activerecord-bq-adapter/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Dan Draper"]
   gem.email         = ["daniel@codefire.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Basic Implementation of an ActiveRecord Adapter for Google's Big Query. Just handles queries right now. See TODO list in the Readme for whats coming.}
+  gem.summary       = %q{Basic Implementation of an ActiveRecord Adapter for Google's Big Query}
   gem.homepage      = ""
 
   gem.add_dependency "multipart_body", "~> 0.2.1"

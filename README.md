@@ -1,6 +1,6 @@
 # Activerecord::Bq::Adapter
 
-TODO: Write a gem description
+Basic Implementation of an ActiveRecord Adapter for Google's Big Query. Just handles queries right now. See TODO list in the Readme for whats coming.
 
 ## Installation
 
@@ -18,7 +18,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Set your model to use the adapter. You probably won't want to do it for your entire app but rather just specific models like:
+
+    class MyModel < ActiveRecord::Base
+      set_table_name "<bq_dataset>.<bq_table>"
+      establish_connection(
+        :adapter    => "bq",
+        :project_id => <project_id>,
+        :client_id  => "<project_id>.apps.googleusercontent.com",
+        :client_secret => <client-secret>,
+        :refresh_token => <token>
+      )
+    end
+
 
 ## Contributing
 
