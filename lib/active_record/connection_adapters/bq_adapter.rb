@@ -16,6 +16,7 @@ module ActiveRecord
     end
 
     class BQAdapter < AbstractAdapter
+      attr_reader :project_id
 
       # Steal from SQLite for now :)
       class BindSubstitution < Arel::Visitors::SQLite # :nodoc:
@@ -65,7 +66,7 @@ module ActiveRecord
       end
 
       def exec_insert(sql, name, binds)
-        # TODO
+        raise ActiveRecordError, "Cannot use create for BQ - call ActiveRecord::Base.bq_append instead"
       end
 
       def exec_update(sql, name, binds)
@@ -103,6 +104,16 @@ module ActiveRecord
       def primary_key(table)
         # TODO: Doesn't really apply for BQ
         "id"
+      end
+
+      def schema_hash(table)
+        {
+          :schema => {
+            :fields => columns(table).map do |column|
+              { :name => column.name, :type => column.sql_type }
+            end
+          }
+        }
       end
 
       private
